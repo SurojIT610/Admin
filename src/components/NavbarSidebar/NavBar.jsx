@@ -1,10 +1,10 @@
 import React from 'react';
-import '../../assets/css/bootstrap.min.css';
-import '../../assets/css/plugins.min.css';
+// import '../../assets/css/bootstrap.min.css';
+// import '../../assets/css/plugins.min.css';
 import '../../assets/css/kaiadmin.min.css';
-import '../../assets/css/demo.css';
-import '../../assets/js/kaiadmin.min.js'; // Ensure this JS file is compatible with Bootstrap
-import '../../assets/js/kaiadmin.js';     // Ensure this JS file is compatible with Bootstrap
+// import '../../assets/css/demo.css';
+// import '../../assets/js/kaiadmin.min.js'; // Ensure this JS file is compatible with Bootstrap
+// import '../../assets/js/kaiadmin.js';     // Ensure this JS file is compatible with Bootstrap
 
 const NavBar = () => {
   return (

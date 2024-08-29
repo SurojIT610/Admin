@@ -1,50 +1,30 @@
-import React, { useEffect } from 'react';
-
-// Import CSS files
-import '../../assets/css/bootstrap.min.css';
-import '../../assets/css/plugins.min.css';
+import React, { useState, useRef } from 'react';
 import '../../assets/css/kaiadmin.min.css';
-import '../../assets/css/demo.css';
-import '../../assets/js/kaiadmin.min.js';
-import '../../assets/js/kaiadmin.js';
+import '../../assets/js/core/bootstrap.min.js'; // Ensure Bootstrap JS is included
 
 // Import the logo image
 import logoLight from '../../assets/img/kaiadmin/logo_light.svg';
 
 const SideBar = () => {
+  // State to track which item is open
+  const [openItem, setOpenItem] = useState(null);
 
-  useEffect(() => {
-    // Load web font script dynamically
-    const webFontScript = document.createElement('script');
-    webFontScript.src = '../../assets/js/plugin/webfont/webfont.min.js';
-    webFontScript.async = true;
+  // Refs for collapse elements
+  const refs = {
+    dashboard: useRef(null),
+    base: useRef(null),
+    sidebarLayouts: useRef(null),
+    forms: useRef(null),
+    tables: useRef(null),
+    maps: useRef(null),
+    charts: useRef(null),
+    submenu: useRef(null),
+  };
 
-    webFontScript.onload = () => {
-      if (window.WebFont) {
-        window.WebFont.load({
-          google: { families: ['Public Sans:300,400,500,600,700'] },
-          custom: {
-            families: [
-              'Font Awesome 5 Solid',
-              'Font Awesome 5 Regular',
-              'Font Awesome 5 Brands',
-              'simple-line-icons'
-            ],
-            urls: ['../../assets/css/fonts.min.css']
-          },
-          active: function () {
-            sessionStorage.fonts = true;
-          }
-        });
-      }
-    };
-    document.body.appendChild(webFontScript);
-
-    // Cleanup
-    return () => {
-      document.body.removeChild(webFontScript);
-    };
-  }, []);
+  // Toggle function for collapse
+  const toggleCollapse = (itemId) => {
+    setOpenItem(openItem === itemId ? null : itemId);
+  };
 
   return (
     <div className="sidebar" data-background-color="dark">
@@ -71,12 +51,22 @@ const SideBar = () => {
         <div className="sidebar-content">
           <ul className="nav nav-secondary">
             <li className="nav-item active">
-              <a data-bs-toggle="collapse" href="#dashboard" className="collapsed" aria-expanded="false">
+              <a
+                href="#dashboard"
+                onClick={(e) => {
+                  e.preventDefault();
+                  toggleCollapse('dashboard');
+                }}
+              >
                 <i className="fas fa-home"></i>
                 <p>Dashboard</p>
                 <span className="caret"></span>
               </a>
-              <div className="collapse" id="dashboard">
+              <div
+                className="collapse"
+                ref={refs.dashboard}
+                style={{ display: openItem === 'dashboard' ? 'block' : 'none' }}
+              >
                 <ul className="nav nav-collapse">
                   <li>
                     <a href="/">
@@ -93,12 +83,22 @@ const SideBar = () => {
               <h4 className="text-section">Components</h4>
             </li>
             <li className="nav-item">
-              <a data-bs-toggle="collapse" href="#base">
+              <a
+                href="#base"
+                onClick={(e) => {
+                  e.preventDefault();
+                  toggleCollapse('base');
+                }}
+              >
                 <i className="fas fa-layer-group"></i>
                 <p>Base</p>
                 <span className="caret"></span>
               </a>
-              <div className="collapse" id="base">
+              <div
+                className="collapse"
+                ref={refs.base}
+                style={{ display: openItem === 'base' ? 'block' : 'none' }}
+              >
                 <ul className="nav nav-collapse">
                   <li>
                     <a href="components/avatars.html">
@@ -149,12 +149,22 @@ const SideBar = () => {
               </div>
             </li>
             <li className="nav-item">
-              <a data-bs-toggle="collapse" href="#sidebarLayouts">
+              <a
+                href="#sidebarLayouts"
+                onClick={(e) => {
+                  e.preventDefault();
+                  toggleCollapse('sidebarLayouts');
+                }}
+              >
                 <i className="fas fa-th-list"></i>
                 <p>Sidebar Layouts</p>
                 <span className="caret"></span>
               </a>
-              <div className="collapse" id="sidebarLayouts">
+              <div
+                className="collapse"
+                ref={refs.sidebarLayouts}
+                style={{ display: openItem === 'sidebarLayouts' ? 'block' : 'none' }}
+              >
                 <ul className="nav nav-collapse">
                   <li>
                     <a href="sidebar-style-2.html">
@@ -170,12 +180,22 @@ const SideBar = () => {
               </div>
             </li>
             <li className="nav-item">
-              <a data-bs-toggle="collapse" href="#forms">
+              <a
+                href="#forms"
+                onClick={(e) => {
+                  e.preventDefault();
+                  toggleCollapse('forms');
+                }}
+              >
                 <i className="fas fa-pen-square"></i>
                 <p>Forms</p>
                 <span className="caret"></span>
               </a>
-              <div className="collapse" id="forms">
+              <div
+                className="collapse"
+                ref={refs.forms}
+                style={{ display: openItem === 'forms' ? 'block' : 'none' }}
+              >
                 <ul className="nav nav-collapse">
                   <li>
                     <a href="forms/forms.html">
@@ -186,12 +206,22 @@ const SideBar = () => {
               </div>
             </li>
             <li className="nav-item">
-              <a data-bs-toggle="collapse" href="#tables">
+              <a
+                href="#tables"
+                onClick={(e) => {
+                  e.preventDefault();
+                  toggleCollapse('tables');
+                }}
+              >
                 <i className="fas fa-table"></i>
                 <p>Tables</p>
                 <span className="caret"></span>
               </a>
-              <div className="collapse" id="tables">
+              <div
+                className="collapse"
+                ref={refs.tables}
+                style={{ display: openItem === 'tables' ? 'block' : 'none' }}
+              >
                 <ul className="nav nav-collapse">
                   <li>
                     <a href="tables/tables.html">
@@ -207,12 +237,22 @@ const SideBar = () => {
               </div>
             </li>
             <li className="nav-item">
-              <a data-bs-toggle="collapse" href="#maps">
+              <a
+                href="#maps"
+                onClick={(e) => {
+                  e.preventDefault();
+                  toggleCollapse('maps');
+                }}
+              >
                 <i className="fas fa-map-marker-alt"></i>
                 <p>Maps</p>
                 <span className="caret"></span>
               </a>
-              <div className="collapse" id="maps">
+              <div
+                className="collapse"
+                ref={refs.maps}
+                style={{ display: openItem === 'maps' ? 'block' : 'none' }}
+              >
                 <ul className="nav nav-collapse">
                   <li>
                     <a href="maps/googlemaps.html">
@@ -228,12 +268,22 @@ const SideBar = () => {
               </div>
             </li>
             <li className="nav-item">
-              <a data-bs-toggle="collapse" href="#charts">
+              <a
+                href="#charts"
+                onClick={(e) => {
+                  e.preventDefault();
+                  toggleCollapse('charts');
+                }}
+              >
                 <i className="far fa-chart-bar"></i>
                 <p>Charts</p>
                 <span className="caret"></span>
               </a>
-              <div className="collapse" id="charts">
+              <div
+                className="collapse"
+                ref={refs.charts}
+                style={{ display: openItem === 'charts' ? 'block' : 'none' }}
+              >
                 <ul className="nav nav-collapse">
                   <li>
                     <a href="charts/charts.html">
@@ -263,19 +313,38 @@ const SideBar = () => {
               </a>
             </li>
             <li className="nav-item">
-              <a data-bs-toggle="collapse" href="#submenu">
+              <a
+                href="#submenu"
+                onClick={(e) => {
+                  e.preventDefault();
+                  toggleCollapse('submenu');
+                }}
+              >
                 <i className="fas fa-bars"></i>
                 <p>Menu Levels</p>
                 <span className="caret"></span>
               </a>
-              <div className="collapse" id="submenu">
+              <div
+                className="collapse"
+                ref={refs.submenu}
+                style={{ display: openItem === 'submenu' ? 'block' : 'none' }}
+              >
                 <ul className="nav nav-collapse">
                   <li>
-                    <a data-bs-toggle="collapse" href="#subnav1">
+                    <a
+                      href="#subnav1"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        toggleCollapse('subnav1');
+                      }}
+                    >
                       <span className="sub-item">Level 1</span>
                       <span className="caret"></span>
                     </a>
-                    <div className="collapse" id="subnav1">
+                    <div
+                      className="collapse"
+                      style={{ display: openItem === 'subnav1' ? 'block' : 'none' }}
+                    >
                       <ul className="nav nav-collapse subnav">
                         <li>
                           <a href="#">
@@ -291,11 +360,20 @@ const SideBar = () => {
                     </div>
                   </li>
                   <li>
-                    <a data-bs-toggle="collapse" href="#subnav2">
+                    <a
+                      href="#subnav2"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        toggleCollapse('subnav2');
+                      }}
+                    >
                       <span className="sub-item">Level 1</span>
                       <span className="caret"></span>
                     </a>
-                    <div className="collapse" id="subnav2">
+                    <div
+                      className="collapse"
+                      style={{ display: openItem === 'subnav2' ? 'block' : 'none' }}
+                    >
                       <ul className="nav nav-collapse subnav">
                         <li>
                           <a href="#">
