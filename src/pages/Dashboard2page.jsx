@@ -1,14 +1,10 @@
-import React from "react";
-import SideBar from "../../components/NavbarSidebar/SideBar";
-import NavBar from "../../components/NavbarSidebar/NavBar";
-import DashboardRowA from "../../components/Dashboard/DashboardRowA";
-import DashboardRowB from "../../components/Dashboard/DashboardRowB";
-import DashboardRowC from "../../components/Dashboard/DashboardRowC";
+import React from 'react'
+import Pannel from '../components/Dashboard2/Pannel'
+import NavBar from '../components/NavbarSidebar/NavBar'
+import SideBar from '../components/NavbarSidebar/SideBar'
 import "bootstrap/dist/js/bootstrap.bundle.min"; // Ensure you import the bundle that includes Popper.js
-// import "bootstrap/dist/css/bootstrap.min.css";
 
-
-const Dashboard = () => {
+const Dashboard2page = () => {
   return (
     <>
       <div className="wrapper">
@@ -17,42 +13,12 @@ const Dashboard = () => {
 
         <div className="main-panel">
           <div className="main-header">
-            {/* {" "} */}
-            {/*div 1*/}
-            <div className="main-header-logo">
-              {/* <!-- Logo Header --> */}
-              <div className="logo-header" data-background-color="dark">
-                <a href="index.html" className="logo">
-                  <img
-                    src="assets/img/kaiadmin/logo_light.svg"
-                    alt="navbar brand"
-                    className="navbar-brand"
-                    height="20"
-                  />
-                </a>
-                <div className="nav-toggle">
-                  <button className="btn btn-toggle toggle-sidebar">
-                    <i className="gg-menu-right"></i>
-                  </button>
-                  <button className="btn btn-toggle sidenav-toggler">
-                    <i className="gg-menu-left"></i>
-                  </button>
-                </div>
-                <button className="topbar-toggler more">
-                  <i className="gg-more-vertical-alt"></i>
-                </button>
-              </div>
-              {/* <!-- End Logo Header --> */}
-            </div>
-            {/* Navbar common in all */}
             <NavBar />
           </div>{" "}
           {/*div 1*/}
           <div className="container">
             <div className="page-inner">
-              <DashboardRowA />
-              <DashboardRowB />
-              <DashboardRowC />
+             <Pannel/>
 
               {/*  */}
 
@@ -99,7 +65,11 @@ const Dashboard = () => {
         </div>
       </div>
     </>
-  );
-};
 
-export default Dashboard;
+
+
+
+  )
+}
+
+export default Dashboard2page
